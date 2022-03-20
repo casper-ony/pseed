@@ -3,7 +3,7 @@ import { useState } from "react"
 import { useRouter } from 'next/router'
 
 
-const verifyAccount = () => {
+const VerifyAccount = () => {
     const Router = useRouter()
     const [passcode, setPasscode] = useState('')
 
@@ -52,4 +52,4 @@ const verifyAccount = () => {
     )
 }
 
-export default verifyAccount
+export default VerifyAccount

@@ -2,7 +2,7 @@ import { Dialog, Transition } from '@headlessui/react'
 import { Fragment, useState } from 'react'
 import { useRouter } from 'next/router'
 
-const voteMe = () => {
+const VoteMe = () => {
     const Router = useRouter()
     let [isOpen, setIsOpen] = useState(false)
 
@@ -106,4 +106,4 @@ const voteMe = () => {
     )
 }
 
-export default voteMe
+export default VoteMe
